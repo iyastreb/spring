@@ -2,10 +2,26 @@ package com.iyastreb.micro1.domain;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Team {
+	@Id @GeneratedValue
+	private Long id;
 	private String name;
 	private String address;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="teamId")
 	private Set<Player> players;
+	
+	public Team() {
+	}
 	
 	public Team(String name, String address, Set<Player> players) {
 		this.name = name;

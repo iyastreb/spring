@@ -1,32 +1,21 @@
 package com.iyastreb.micro1;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.annotation.PostConstruct;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.iyastreb.micro1.domain.Player;
+import com.iyastreb.micro1.dao.TeamDao;
 import com.iyastreb.micro1.domain.Team;
 
 @Controller
 public class AppController {
-	private Team team;
-	
-	@PostConstruct
-	public void init() {
-		Set<Player> players = new HashSet<>();
-		players.add(new Player("Ilia", "forward"));
-		players.add(new Player("Maxim", "goalie"));
-		
-		team = new Team("Hawks", "Ulyanovsk", players);
-	}
+	@Autowired
+	private TeamDao teamDao;
 
-	@RequestMapping("/team")
-	public @ResponseBody Team team() {
-		return team;
+	@RequestMapping("/old/{name}")
+	public @ResponseBody Team team(@PathVariable String name) {
+		return teamDao.findByName(name);
 	}
 }
