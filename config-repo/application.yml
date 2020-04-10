@@ -1,7 +1,7 @@
 ---
-eureka
-  client
-    serviceUrl
+eureka:
+  client:
+    serviceUrl:
       defaultZone: http://localhost:9999/eureka/
 
 ---
@@ -27,4 +27,12 @@ words: reasonable,leaky,suspicious,ordinary,unlikely
 ---
 spring:
   profiles: noun
-words: boat,book,vote,seat,backpack,partition,groundhog  
+words: boat,book,vote,seat,backpack,partition,groundhog
+
+---
+spring:
+  profiles: sentence
+words: 
+server:
+  port: 8020
+
