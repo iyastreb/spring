@@ -33,8 +33,12 @@ words: boat,book,vote,seat,backpack,partition,groundhog
 
 ---
 spring:
+  profiles: cold-noun
+words: icicle,refrigerator,blizzard,snowball
+
+---
+spring:
   profiles: sentence
 words: 
 server:
   port: 8020
-
