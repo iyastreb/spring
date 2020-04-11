@@ -40,3 +40,10 @@ spring:
   profiles: noun
   application:
     name: client-noun
+
+---
+spring:
+  profiles: cold-noun
+  application:
+    name: client-noun
+    
