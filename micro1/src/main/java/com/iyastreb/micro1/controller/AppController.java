@@ -1,4 +1,4 @@
-package com.iyastreb.micro1;
+package com.iyastreb.micro1.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 
 import com.iyastreb.micro1.dao.TeamDao;
 import com.iyastreb.micro1.domain.Team;
+import com.iyastreb.micro1.service.SentenceService;
 
 @Controller
 public class AppController {
 	@Autowired
 	private TeamDao teamDao;
-	
-	@Autowired
-	private RestTemplate client;
 
+	@Autowired
+	private SentenceService sentenceService;
+	
 	@Value("${words}") String words;
 
 	@RequestMapping("/old/{name}")
@@ -36,15 +36,9 @@ public class AppController {
 	
 	@GetMapping("/sentence")
 	public @ResponseBody String getSentence() {
-		return  getWord("client-subject") + " " + 
-				getWord("client-verb") + " " + 
-				getWord("client-article") + " " +
-				getWord("client-adjective") + " " + 
-				getWord("client-noun") + ".";
+		return String.format("%s<br>%s<br>%s<br>",
+				sentenceService.buildSentence(),
+				sentenceService.buildSentence(),
+				sentenceService.buildSentence());
 	}
-
-	public String getWord(String service) {
-		return client.getForObject("http://" + service, String.class);
-	}
-
 }
