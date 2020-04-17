@@ -36,9 +36,13 @@ public class AppController {
 	
 	@GetMapping("/sentence")
 	public @ResponseBody String getSentence() {
-		return String.format("%s<br>%s<br>%s<br>",
-				sentenceService.buildSentence(),
-				sentenceService.buildSentence(),
-				sentenceService.buildSentence());
+		long start = System.currentTimeMillis();
+		String res = "";
+		for (int i = 0; i < 10; ++i) {
+			res += String.format("%s<br>", sentenceService.buildSentence());
+		}
+		long time = System.currentTimeMillis() - start;
+		res += "Generated in " + time + " milleseconds.<br>";
+		return res;
 	}
 }
