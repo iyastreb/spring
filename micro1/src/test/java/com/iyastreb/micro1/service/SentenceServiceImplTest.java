@@ -9,6 +9,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import io.reactivex.rxjava3.core.Observable;
+
 public class SentenceServiceImplTest {
     @InjectMocks
     private SentenceServiceImpl sentenceService;
@@ -21,11 +23,11 @@ public class SentenceServiceImplTest {
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		
-		Mockito.when(service.getSubject()).thenReturn("S");
-		Mockito.when(service.getVerb()).thenReturn("V");
-		Mockito.when(service.getArticle()).thenReturn("A");
-		Mockito.when(service.getAdjective()).thenReturn("Ad");
-		Mockito.when(service.getNoun()).thenReturn("N");
+		Mockito.when(service.getSubject()).thenReturn(Observable.just("S"));
+		Mockito.when(service.getVerb()).thenReturn(Observable.just("V"));
+		Mockito.when(service.getArticle()).thenReturn(Observable.just("A"));
+		Mockito.when(service.getAdjective()).thenReturn(Observable.just("Ad"));
+		Mockito.when(service.getNoun()).thenReturn(Observable.just("N"));
 	}
 	
 	@Test

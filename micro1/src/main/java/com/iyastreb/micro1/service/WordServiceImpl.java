@@ -10,7 +10,8 @@ import com.iyastreb.micro1.dao.SubjectClient;
 import com.iyastreb.micro1.dao.VerbClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-import rx.Observable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 @Service
 public class WordServiceImpl implements WordService {
@@ -29,42 +30,47 @@ public class WordServiceImpl implements WordService {
 	@Override
 	@HystrixCommand(fallbackMethod = "getDefaultSubject")
 	public Observable<String> getSubject() {
-		return subjectClient.getWord();
+		return Observable.fromCallable(() -> subjectClient.getWord())
+				.subscribeOn(Schedulers.computation());
 	}
 
 	@Override
 	@HystrixCommand(fallbackMethod = "getEmptyString")
 	public Observable<String> getVerb() {
-		return verbClient.getWord();
+		return Observable.fromCallable(() -> verbClient.getWord())
+				.subscribeOn(Schedulers.computation());
 	}
 
 	@Override
 	@HystrixCommand(fallbackMethod = "getEmptyString")
 	public Observable<String> getArticle() {
-		return articleClient.getWord();
+		return Observable.fromCallable(() -> articleClient.getWord())
+				.subscribeOn(Schedulers.computation());
 	}
 
 	@Override
 	@HystrixCommand(fallbackMethod = "getEmptyString")
 	public Observable<String> getAdjective() {
-		return adjClient.getWord();
+		return Observable.fromCallable(() -> adjClient.getWord())
+				.subscribeOn(Schedulers.computation());
 	}
 
 	@Override
 	@HystrixCommand(fallbackMethod = "getDefaultNoun")
 	public Observable<String> getNoun() {
-		return nounClient.getWord();
+		return Observable.fromCallable(() -> nounClient.getWord())
+				.subscribeOn(Schedulers.computation());
 	}
 	
-	public String getEmptyString() {
-		return "";
+	public Observable<String> getEmptyString() {
+		return Observable.just("");
 	}
 	
-	public String getDefaultSubject() {
-		return "Someone";
+	public Observable<String> getDefaultSubject() {
+		return Observable.just("Someone");
 	}
 	
-	public String getDefaultNoun() {
-		return "something";
+	public Observable<String> getDefaultNoun() {
+		return Observable.just("something");
 	}
 }

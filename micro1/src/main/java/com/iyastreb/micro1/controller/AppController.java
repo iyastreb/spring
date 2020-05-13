@@ -1,6 +1,7 @@
 package com.iyastreb.micro1.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +39,7 @@ public class AppController {
 	public @ResponseBody String getSentence() {
 		long start = System.currentTimeMillis();
 		String res = "";
-		for (int i = 0; i < 10; ++i) {
+		for (int i = 0; i < 30; ++i) {
 			res += String.format("%s<br>", sentenceService.buildSentence());
 		}
 		long time = System.currentTimeMillis() - start;

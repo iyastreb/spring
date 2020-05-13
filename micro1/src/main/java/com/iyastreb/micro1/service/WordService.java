@@ -1,6 +1,6 @@
 package com.iyastreb.micro1.service;
 
-import rx.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 public interface WordService {
 	Observable<String> getSubject();
