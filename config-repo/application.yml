@@ -37,7 +37,7 @@ words: reasonable,leaky,suspicious,ordinary,lazy,big,little,new
 ---
 spring:
   profiles: noun
-words: boat,book,vote,seat,backpack
+words: boat,book,vote,seat,backpack,word,stock,page
 
 ---
 spring:
