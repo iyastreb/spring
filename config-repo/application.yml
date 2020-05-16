@@ -40,7 +40,7 @@ words: reasonable,leaky,suspicious,ordinary,lazy,big,little,new
 ---
 spring:
   profiles: noun
-words: world,stack,seat,oak,goal,ball
+words: world,stack,seat,oak,tail,queue,gap
 
 ---
 spring:
