@@ -17,12 +17,12 @@ spring:
 ---
 spring:
   profiles: subject
-words: I,You,He,She,It,Ilia,Maxim
+words: I,You,He,She,It
 
 ---
 spring:
   profiles: verb
-words: love,hate,join,struggle,fight,merge,sort
+words: love,hate,join,struggle,fight
 
 ---
 spring:
@@ -32,12 +32,12 @@ words: a,the,one
 ---
 spring:
   profiles: adjective
-words: reasonable,leaky,suspicious,ordinary,tiny,big,huge
+words: reasonable,leaky,suspicious,ordinary
 
 ---
 spring:
   profiles: noun
-words: boat,book,vote,seat,backpack,look,shield,
+words: boat,book,vote,seat,backpack
 
 ---
 spring:
