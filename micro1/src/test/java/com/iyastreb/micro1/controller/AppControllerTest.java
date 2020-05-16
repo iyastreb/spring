@@ -2,6 +2,7 @@ package com.iyastreb.micro1.controller;
 
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -50,6 +51,6 @@ public class AppControllerTest {
 		Mockito.when(sentenceService.buildSentence()).thenReturn("sentence");
 		
 		mvc.perform(get("/sentence"))
-			.andExpect(jsonPath("$", is("sentence<br>sentence<br>sentence<br>")));
+			.andExpect(jsonPath("$", containsString("sentence<br>sentence<br>sentence<br>")));
 	}
 }

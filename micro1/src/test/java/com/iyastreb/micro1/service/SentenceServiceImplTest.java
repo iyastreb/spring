@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import io.reactivex.rxjava3.core.Observable;
+import rx.Observable;
 
 public class SentenceServiceImplTest {
     @InjectMocks

@@ -3,7 +3,7 @@ package com.iyastreb.micro1.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.reactivex.rxjava3.core.Observable;
+import rx.Observable;
 
 @Service
 public class SentenceServiceImpl implements SentenceService {
@@ -19,6 +19,8 @@ public class SentenceServiceImpl implements SentenceService {
 							  service.getNoun(),
 				 (subject, verb, article, adj, noun) -> 
 					String.format("%s %s %s %s %s.", subject, verb, article, adj, noun))
-				.blockingFirst();
+				.toBlocking()
+				.first();
+				
 	}
 }

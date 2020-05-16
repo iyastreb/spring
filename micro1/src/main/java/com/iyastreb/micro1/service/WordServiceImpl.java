@@ -10,8 +10,8 @@ import com.iyastreb.micro1.dao.SubjectClient;
 import com.iyastreb.micro1.dao.VerbClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import rx.Observable;
+import rx.schedulers.Schedulers;
 
 @Service
 public class WordServiceImpl implements WordService {
@@ -27,6 +27,7 @@ public class WordServiceImpl implements WordService {
 	@Autowired
 	private SubjectClient subjectClient;
 
+	
 	@Override
 	@HystrixCommand(fallbackMethod = "getDefaultSubject")
 	public Observable<String> getSubject() {
@@ -62,15 +63,15 @@ public class WordServiceImpl implements WordService {
 				.subscribeOn(Schedulers.computation());
 	}
 	
-	public Observable<String> getEmptyString() {
-		return Observable.just("");
+	public String getEmptyString() {
+		return "";
 	}
 	
-	public Observable<String> getDefaultSubject() {
-		return Observable.just("Someone");
+	public String getDefaultSubject() {
+		return "Someone";
 	}
 	
-	public Observable<String> getDefaultNoun() {
-		return Observable.just("something");
+	public String getDefaultNoun() {
+		return "something";
 	}
 }

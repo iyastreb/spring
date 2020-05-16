@@ -1,7 +1,10 @@
 package com.iyastreb.micro1.controller;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +16,7 @@ import com.iyastreb.micro1.domain.Team;
 import com.iyastreb.micro1.service.SentenceService;
 
 @Controller
+@RefreshScope
 public class AppController {
 	@Autowired
 	private TeamDao teamDao;
@@ -20,8 +24,16 @@ public class AppController {
 	@Autowired
 	private SentenceService sentenceService;
 	
-	@Value("${words}") String words;
+	@Value("${words}")
+	private String words;
+	
+	private String[] wordArray;
 
+	@PostConstruct
+	private void init() {
+		wordArray = words.split(",");
+	}
+	
 	@RequestMapping("/old/{name}")
 	public @ResponseBody Team team(@PathVariable String name) {
 		return teamDao.findByName(name);
@@ -29,7 +41,6 @@ public class AppController {
 	
 	@GetMapping("/")
 	public @ResponseBody String getWord() {
-		String[] wordArray = words.split(",");
 		int i = (int) Math.round(Math.random() * (wordArray.length - 1));
 		return wordArray[i];
 	}
