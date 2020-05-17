@@ -8,17 +8,6 @@ eureka:
 
 ---
 spring:
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-  cloud:
-    bus:
-      enabled: true
-
----
-spring:
   profiles: subject
 words: I,You,He,She,It,Ilia
 

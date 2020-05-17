@@ -6,13 +6,6 @@ spring:
         git:
           uri: https://github.com/iyastreb/spring
           searchPaths: config-repo
-    bus:
-      enabled: true
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
 
 server:
   port: 8888
@@ -21,6 +14,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: bus-env,bus-refresh,refresh,info,health
-  security:
-    enabled: false
+        include: bus-refresh,refresh,info,health
