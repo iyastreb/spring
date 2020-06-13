@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+  instance:
+    preferIpAddress: true
+
+zuul:
+  prefix: /api
+  routes:
+    client-subject:
+      path: /subject/**
